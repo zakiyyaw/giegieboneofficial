@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add_circle" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <title>Giegiebone - Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .user-info {
+            color: #586D43;
+            font-weight: bold;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logout-btn {
+            background: none;
+            border: 1px solid #586D43;
+            color: #586D43;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #586D43;
+            color: white;
+        }
+        .admin-btn {
+            background: #9CAF88;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .admin-btn:hover {
+            background: #88a878;
+            color: white;
+            text-decoration: none;
+        }
+        .product-image-container img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            margin: 10px;
+            min-width: 250px;
+            max-width: 300px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .catalog-image {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .catalog-image:hover {
+            transform: scale(1.05);
+        }
+        .icon-cart {
+            cursor: pointer;
+        }
+        .product-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(156, 175, 136, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .slider-nav.prev {
+            left: 10px;
+        }
+        .slider-nav.next {
+            right: 10px;
+        }
+        .slider-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .add-to-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f4f0;
+            transition: background 0.3s;
+        }
+        .add-to-cart-btn:hover {
+            background: #e0e8df;
+        }
+        .catalog-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .catalog-title {
+            font-size: 2.5rem;
+            color: #586D43;
+            margin-bottom: 20px;
+        }
+        .catalog-images {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .product-slider-container {
+            padding: 40px 20px;
+        }
+        .slider-title {
+            font-size: 2.5rem;
+            color: #586D43;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #586D43;
+        }
+        .product-stock {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 10px 0;
+            height: 60px;
+            overflow: hidden;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            height: 60px;
+            overflow: hidden;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        .bg-secondary {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="containerimg">
+        <div class="circle">
+            <div class="wrapnavbar">
+                <div class="leftnavbar">
+                    <div>
+                        <h1 class="textgiegiebone">Giegiebone</h1>
+                        <img class="atastext" src="/img/^.svg" alt="">
+                        <h1 style="font-family: 'Jersey 15', sans-serif; margin-top: -10px; margin-left: 10px; position: absolute;">..</h1>
+                    </div>
+                </div>
+                <div class="rightnavbar">
+                    <div class="navbar">
+                        <a id="icon" href="/product">
+                            <svg style="color: #586D43;" xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                            </svg>
+                        </a>
+                        <div class="user-info">
+                            <span>Welcome, <%= user.username %>!</span>
+                            <% if (user.role === 'admin') { %>
+                                <a href="/adminpage" class="admin-btn">Admin Panel</a>
+                            <% } %>
+                            <form action="/logout" method="GET" style="display: inline;">
+                                <button type="submit" class="logout-btn">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="imageawal" src="/img/Gibon.png" alt="">
+        </div>
+    </div>
+
+    <div class="catalog-section">
+        <div class="catalog-title-container">
+            <h2 class="catalog-title">CATALOG</h2>
+        </div>
+        
+        <div class="catalog-images">
+            <a href="#">
+                <img src="/img/gelang-catalog.png" alt="catalog" class="catalog-image">
+            </a>
+            <a href="#">
+                <img src="/img/strap.png" alt="catalog" class="catalog-image">
+            </a>
+        </div>
+    </div>
+
+    <div class="product-slider-container">
+        <div class="slider-title-container">
+            <h2 class="slider-title">PRODUCTS</h2>
+        </div>
+         <!-- ALERT SCRIPT hanya untuk user -->
+    <% if (alertMessage) { %>
+        <script>
+            alert("<%= alertMessage %>");
+        </script>
+    <% } %>
+
+    <!-- NAVBAR SECTION -->
+    <div class="wrapnavbar">
+        <!-- ... existing navbar code ... -->
+    </div>
+
+    <!-- CONTENT SECTION -->
+    <div class="wrapleftright">
+        <!-- ... existing content ... -->
+    </div>
+        
+        <div class="slider-wrapper">
+            <div class="product-container" id="product-container">
+                <% products.forEach(product => { %>
+                <div class="product-card">
+                    <div class="product-info">
+                        <h3 class="product-title"><%= product.name %></h3>
+                        <p class="product-desc"><%= product.description %></p>
+                        <% if (product.category) { %>
+                            <span class="badge bg-secondary"><%= product.category %></span>
+                        <% } %>
+                    </div>
+                    <div class="product-image-container">
+                        <% if (product.image) { %>
+                            <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                        <% } else { %>
+                            <img src="/img/product<%= (product.product_id % 15) + 1 %>.png" alt="<%= product.name %>" class="product-image">
+                        <% } %>
+                    </div>
+                    <div class="product-bottom">
+                        <div class="product-price">Rp <%= product.price.toLocaleString('id-ID') %></div>
+                        <div class="product-stock">Stock: <%= product.stock %></div>
+                        <div class="add-to-cart-btn" 
+                             data-product-id="<%= product.product_id %>"
+                             data-product-name="<%= product.name %>"
+                             data-product-price="<%= product.price %>">
+                            <svg style="color: #586D43;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+
+            <button class="slider-nav prev" id="product-prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-nav next" id="product-next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer id="footer" style="background-color: white; padding: 20px 50px; margin-top: 50px;">
+        <div style="padding-left: 350px; margin-bottom: 20px; color: black;">
+            <h2>Click the icon</h2>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap;">
+            <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                <a href="https://wa.me/6285892271272" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fab fa-whatsapp fa-3x"></i>
+                    <span style="font-size: 1.2rem;">WhatsApp</span>
+                </a>
+                <a href="https://www.instagram.com/giegiebone_?igsh=aDdrZHo5ampib2Rm" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fab fa-instagram fa-3x"></i>
+                    <span style="font-size: 1.2rem;">Instagram</span>
+                </a>
+                <a href="https://youtube.com/@giegiebone?si=mmIfqNEFM2gswUTV" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fab fa-youtube fa-3x"></i>
+                    <span style="font-size: 1.2rem;">YouTube</span>
+                </a>
+                <a href="https://www.facebook.com/share/1E29uiJ5nA/" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fab fa-facebook fa-3x"></i>
+                    <span style="font-size: 1.2rem;">Facebook</span>
+                </a>
+                <a href="https://www.tiktok.com/@giegiebone?_t=ZS-8wnDhaZjF9M&_r=1" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fab fa-tiktok fa-3x"></i>
+                    <span style="font-size: 1.2rem;">TikTok</span>
+                </a>
+                <a href="https://shopee.co.id/giegieboneshop?fbclid=PAQ0xDSwKmyrdleHRuA2FlbQIxMQABpyxQBAqVJIw1gf04ww82XDwhwMMiG2uT4Y345n-G40vjCUF0ytt1ojY_y4rM_aem_z__GTiexVCDH35iTpyFE2w" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <i class="fas fa-shopping-bag fa-3x"></i>
+                    <span style="font-size: 1.2rem;">Shopee</span>
+                </a>
+            </div>
+            <div style="margin-top: 20px;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.9973200008085!2d107.46358027592335!3d-6.3943457625435665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69732814c11963%3A0x8ef503487ed82eca!2sPerum%20Griya%20Cikampek!5e0!3m2!1sid!2sid!4v1748610360103!5m2!1sid!2sid"
+                    width="300" 
+                    height="200" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initProductSlider();
+            
+            // Event listener untuk tombol add to cart
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    const productName = this.dataset.productName;
+                    const productPrice = parseFloat(this.dataset.productPrice);
+                    
+                    addToCart(productId, productName, productPrice);
+                });
+            });
+        });
+
+        function initProductSlider() {
+            const productContainer = document.getElementById('product-container');
+            const prevButton = document.getElementById('product-prev-btn');
+            const nextButton = document.getElementById('product-next-btn');
+            
+            if (!productContainer || productContainer.children.length === 0) {
+                return;
+            }
+            
+            function getVisibleProducts() {
+                const containerWidth = productContainer.parentElement.offsetWidth;
+                const cardWidth = productContainer.querySelector('.product-card').offsetWidth + 20;
+                return Math.floor(containerWidth / cardWidth);
+            }
+            
+            const totalProducts = productContainer.children.length;
+            const visibleProducts = getVisibleProducts();
+            const totalSlides = Math.ceil(totalProducts / visibleProducts);
+            let currentSlide = 0;
+            
+            function updateSlider() {
+                if (totalSlides <= 1) {
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                    return;
+                }
+                
+                const slideWidth = productContainer.parentElement.offsetWidth;
+                const translateX = -currentSlide * slideWidth;
+                productContainer.style.transform = `translateX(${translateX}px)`;
+                
+                prevButton.disabled = currentSlide === 0;
+                nextButton.disabled = currentSlide === totalSlides - 1;
+            }
+            
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
+            
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+            
+            if (prevButton && nextButton) {
+                nextButton.addEventListener('click', nextSlide);
+                prevButton.addEventListener('click', prevSlide);
+            }
+            
+            updateSlider();
+            
+            window.addEventListener('resize', () => {
+                const newVisibleProducts = getVisibleProducts();
+                const newTotalSlides = Math.ceil(totalProducts / newVisibleProducts);
+                if (newTotalSlides !== totalSlides) {
+                    currentSlide = 0;
+                    updateSlider();
+                }
+            });
+        }
+
+        function addToCart(productId, productName, price) {
+            alert(`Added ${productName} to cart! Price: Rp ${price.toLocaleString('id-ID')}`);
+            // Here you can add actual cart functionality
+        }
+    </script>
+</body>
+</html>
